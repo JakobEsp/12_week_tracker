@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Year extends Model
 {
     protected $fillable = [
+        'title',
         'vision'
     ];
 
