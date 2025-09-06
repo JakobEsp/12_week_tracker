@@ -9,7 +9,9 @@ class Year extends Model
 {
     protected $fillable = [
         'title',
-        'vision'
+        'vision',
+        'start_date',
+        'end_date',
     ];
 
 

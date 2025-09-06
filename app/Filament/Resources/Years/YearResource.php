@@ -26,7 +26,7 @@ class YearResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return YearForm::configure($schema);
+        return YearForm::configure($schema)->columns(1);
     }
 
     public static function infolist(Schema $schema): Schema
@@ -55,4 +55,5 @@ class YearResource extends Resource
             'edit' => EditYear::route('/{record}/edit'),
         ];
     }
+
 }
