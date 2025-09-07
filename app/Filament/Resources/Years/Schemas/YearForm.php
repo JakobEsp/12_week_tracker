@@ -9,8 +9,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Get;
 
 class YearForm
 {
@@ -37,10 +39,19 @@ class YearForm
                                     Textarea::make('info'),
                                     Select::make('lag_indicator_type')
                                     ->options([
-                                        'number',
-                                        'text'
-                                    ]),
-                                    TextInput::make('lag_indicator')
+                                        'number' => 'Number',
+                                        'text' => 'Text'
+                                    ])->live(),
+                                    Grid::make(1)
+                                    ->schema(fn (Get $get): array => match($get('lag_indicator_type')){
+                                        'number' => [
+                                            TextInput::make('lag_indicator')->type('number')
+                                        ],
+                                        'text' => [
+                                            TextInput::make('lag_indicator')
+                                        ],
+                                        default => []
+                                    })
                                 ])
                         ])
                         /**
