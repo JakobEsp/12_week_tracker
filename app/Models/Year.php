@@ -23,4 +23,7 @@ class Year extends Model
         return $this->hasMany(Commitment::class);
     }
 
+    public function goals(): HasMany {
+        return $this->hasMany(Goal::class);
+    }
 }

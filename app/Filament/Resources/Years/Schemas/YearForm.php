@@ -3,10 +3,13 @@
 namespace App\Filament\Resources\Years\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Repeater;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 
 class YearForm
 {
@@ -14,11 +17,30 @@ class YearForm
     {
         return $schema
             ->components([
-                TextInput::make('title'),
-                RichEditor::make('vision')
-                    ->helperText('Vision for this year'),
-                DateTimePicker::make('start_date'),
-                DateTimePicker::make('end_date') // TODO auto generate based on start_date
+                Tabs::make('Tabs')
+                ->tabs([
+                    Tab::make('Define')
+                        ->schema([
+                            TextInput::make('title'),
+                            RichEditor::make('vision')
+                                ->helperText('Vision for this year'),
+                            DateTimePicker::make('start_date'),
+                            DateTimePicker::make('end_date') // TODO auto generate based on start_date
+                        ]),
+                    Tab::make('Goals')
+                        ->schema([
+                            Repeater::make('goals')->schema([
+                                TextInput::make('title'),
+                                Textarea::make('info'),
+                                                            
+                            ])
+                        ])
+                        /**
+                         * TODO: 
+                         *  - tab: goals with lag inducators, with tactics due dates.
+                         *  - second page: week planning
+                         */
+                ])
             ]);
     }
 }
