@@ -7,6 +7,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -29,11 +30,18 @@ class YearForm
                         ]),
                     Tab::make('Goals')
                         ->schema([
-                            Repeater::make('goals')->schema([
-                                TextInput::make('title'),
-                                Textarea::make('info'),
-                                                            
-                            ])
+                            Repeater::make('goals')
+                                ->relationship('goals')
+                                ->schema([
+                                    TextInput::make('title'),
+                                    Textarea::make('info'),
+                                    Select::make('lag_indicator_type')
+                                    ->options([
+                                        'number',
+                                        'text'
+                                    ]),
+                                    TextInput::make('lag_indicator')
+                                ])
                         ])
                         /**
                          * TODO: 
