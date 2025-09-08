@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Goal extends Model
 {
@@ -17,5 +18,9 @@ class Goal extends Model
 
     public function year():BelongsTo{
         return $this->belongsTo(Year::class);
+    }
+
+    public function tactics(): HasMany{
+        return $this->hasMany(Tactic::class);
     }
 }
