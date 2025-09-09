@@ -10,11 +10,13 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Flex;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Support\Enums\GridDirection;
+use Filament\Tables\Columns\Layout\Split;
 
 class YearForm
 {
@@ -67,12 +69,19 @@ class YearForm
                                         ->schema([
                                             // Grid::make(2)
                                             //     ->schema([
-                                                    TextInput::make('title'),
-                                                    // CheckboxList::make('')
-                                                    //     ->options([
-                                                    //         'm','t','w','t','f','s','s'
-                                                    //     ])->columns(2)->gridDirection(GridDirection::Row)
-                                                // ])
+                                           Flex::make([
+                                               TextInput::make('title'),
+                                               CheckboxList::make('')
+                                                   ->options([
+                                                       'monday' => 'm',
+                                                       'tuesday'=>'t',
+                                                       'wednesday' => 'w',
+                                                       'thursday'=> 't',
+                                                       'firday'=>'f',
+                                                       'saturday'=>'s',
+                                                       'sunday'=>'s'
+                                                   ])
+                                           ])
                                         ])
                                 ])
                             ]),
