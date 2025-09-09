@@ -40,6 +40,7 @@ class YearForm
                     Tab::make('Goals')
                         ->schema([
                             Repeater::make('goals')
+                                ->label('Goals')
                                 ->relationship('goals')
                                 ->schema([
                                     TextInput::make('title'),
@@ -49,6 +50,7 @@ class YearForm
                                         'number' => 'Number',
                                         'text' => 'Text'
                                     ])->live(),
+                                    // TextInput::make('lag_indicator'),
                                     Grid::make(1)
                                     ->schema(fn (Get $get): array => match($get('lag_indicator_type')){
                                         'number' => [
@@ -60,22 +62,24 @@ class YearForm
                                         default => []
                                     }),
                                     Repeater::make('tactics')
+                                        ->label('Tactics')
                                         ->relationship('tactics')
                                         ->schema([
                                             // Grid::make(2)
                                             //     ->schema([
                                                     TextInput::make('title'),
-                                                    CheckboxList::make('')
-                                                        ->options([
-                                                            'm','t','w','t','f','s','s'
-                                                        ])->columns(2)->gridDirection(GridDirection::Row)
+                                                    // CheckboxList::make('')
+                                                    //     ->options([
+                                                    //         'm','t','w','t','f','s','s'
+                                                    //     ])->columns(2)->gridDirection(GridDirection::Row)
                                                 // ])
                                         ])
                                 ])
                             ]),
                     Tab::make('Commitments')
                         ->schema([
-                            Repeater::make('')
+                            Repeater::make('commitments')
+                                ->label('Commitment')
                                 ->relationship('commitments')
                                 ->schema([
                                     TextInput::make('title'),
